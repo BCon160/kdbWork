@@ -1,6 +1,6 @@
 The two word documents contain some fairly basic question and answer examples.
 
-The tick project is a more in depth tick setup with java + python csv loaders, an example web interface and a platform management script.  All code was written by me with the exception of anything of the form *BC.q.  Anything in that form is something that I have modified from official Kx Systems scripts.  If you're interested in playing around with the system, use the command "./processManager.pl --help" and pay attention to the following guidelines:
+The tick project is a more in depth tick setup with java + python csv loaders, an example web interface and a platform management script.  All code was written by me with the exception of the javakdb directory.  Anything of the form *BC.q is something that I have modified from official Kx Systems scripts.  If you're interested in playing around with the system, use the command "./processManager.pl --help" and pay attention to the following guidelines:
     • This project was built on Ubuntu version 16.04 LTS, but should run on other linux distros
     • The project requires 64-bit kdb+.  (Python 32-bit doesn't play nicely with 64 bit ubuntu)
     • It also requires a working pyq installation as well as a compiled version of c.java
