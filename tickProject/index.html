@@ -1,0 +1,33 @@
+<html><body><title>Query RDB</title>
+    <form action="">
+        <input type="button" value="Connect" onclick="connect()">
+        <input type="text" id="Port" placeholder="Source kdb+ Port">
+        <input type="text" id="x" placeholder="Sym Filter">
+        <input type="submit" value="send" onclick="return send()">
+        <input type="button" value="close" onclick="ws.close()">
+    </form>
+<textarea id="out" rows=25 cols=80></textarea>
+<script>
+    var ws,out=document.getElementById("out");
+    function connect()
+    {if ("WebSocket" in window)
+        {
+        port=document.getElementById("Port");
+        p=port.value;
+        ws = new WebSocket("ws://localhost" + ":" + (p ? p : "5010") + "/");
+        out.value="connecting..." ;
+        ws.onopen=function(e){out.value="connected";} 
+        ws.onclose=function(e){out.value="disconnected";}
+        ws.onmessage=function(e){out.value=e.data;}
+        ws.onerror=function(e){out.value=e.data;}
+        }else alert("WebSockets not supported on your browser.");
+    }
+    function send()
+    {x=document.getElementById("x");
+        v=x.value;
+        v="select [-20] from trade where sym = `" + v;
+        ws.send(v);
+        out.value="sent "+v;
+        return false;
+    }
+</script></body></html>
